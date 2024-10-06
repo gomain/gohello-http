@@ -35,6 +35,16 @@
             vendorSha256 =
               "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=";
           };
+          docker = let web = self.packages.${system}.default;
+          in pkgs.dockerTools.buildLayeredImage {
+            name = web.pname;
+            tag = web.version;
+            contents = [ web ];
+            config = {
+              Cmd = [ "/bin/web-server" ];
+              WorkingDir = "/";
+            };
+          };
         };
 
         apps.default =
