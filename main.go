@@ -15,7 +15,7 @@ func main() {
 	flag.Parse()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "hello from nix!")
+		fmt.Fprintln(w, "hello from nix building Docker image!")
 	})
 
 	log.Printf("listening for HTTP on %s", *bindhost)
